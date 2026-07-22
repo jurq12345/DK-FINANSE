@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initScrollTopButton();
   initForms();
-  document.getElementById('year').textContent = new Date().getFullYear();
+  initFaqAccordion();
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
 /* ---------------- mobile navigation ---------------- */
@@ -171,6 +173,21 @@ function initScrollTopButton() {
 
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* ---------------- FAQ accordion ---------------- */
+function initFaqAccordion() {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+      items.forEach((i) => i.classList.remove('is-open'));
+      if (!isOpen) item.classList.add('is-open');
+    });
   });
 }
 
