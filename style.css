@@ -244,7 +244,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 900px) {
   .header-cta { display: none; }
-  .nav-toggle { display: flex; }
+  .nav-toggle { display: flex; margin-left: auto; }
   .main-nav {
     position: fixed;
     inset: 72px 0 0 0;
