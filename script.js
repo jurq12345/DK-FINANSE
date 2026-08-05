@@ -191,24 +191,62 @@ function initFaqAccordion() {
   });
 }
 
-/* ---------------- forms (static site — no backend) ---------------- */
+/* ---------------- forms (Web3Forms) ---------------- */
+const WEB3FORMS_ACCESS_KEY = '2e77d81b-df79-4511-8798-22dfae10b54b';
+const WEB3FORMS_ERROR_TEXT = 'Coś poszło nie tak. Spróbuj ponownie lub zadzwoń do nas.';
+
 function initForms() {
   document.querySelectorAll('form[data-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    const note = form.parentElement.querySelector('[data-note]') ||
+                 form.nextElementSibling;
+    const noteSuccessText = (note && note.hasAttribute('data-note')) ? note.textContent : '';
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitBtnText = submitBtn ? submitBtn.textContent : '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
-      const note = form.parentElement.querySelector('[data-note]') ||
-                   form.nextElementSibling;
+      const formData = new FormData(form);
+      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.append('subject', `Nowe zgłoszenie ze strony DK Finanse — ${form.dataset.form}`);
+      formData.append('from_name', 'Formularz DK Finanse');
 
-      if (note && note.hasAttribute('data-note')) {
-        note.hidden = false;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wysyłanie...';
       }
 
-      form.reset();
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData,
+        });
+        const result = await response.json();
+        if (!result.success) throw new Error(result.message || 'Submit failed');
+
+        if (note && note.hasAttribute('data-note')) {
+          note.textContent = noteSuccessText;
+          note.classList.remove('form-note--error');
+          note.hidden = false;
+        }
+        form.reset();
+      } catch (error) {
+        if (note && note.hasAttribute('data-note')) {
+          note.textContent = WEB3FORMS_ERROR_TEXT;
+          note.classList.add('form-note--error');
+          note.hidden = false;
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtnText;
+        }
+      }
     });
   });
 }
