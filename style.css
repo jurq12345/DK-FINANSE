@@ -659,6 +659,13 @@ a { color: inherit; text-decoration: none; }
   transition: opacity 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 .partners-grid span:hover { opacity: 1; color: var(--primary-dark); transform: translateY(-2px); }
+.partners-group + .partners-group { margin-top: 40px; }
+.partners-group h4 {
+  text-align: center;
+  color: var(--primary-dark);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--primary-dark); color: rgba(255,255,255,0.85); padding: 64px 0 0; }
