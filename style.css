@@ -291,6 +291,10 @@ a { color: inherit; text-decoration: none; }
 .blob-a::after { content: ""; position: absolute; inset: 46px; border-radius: 50%; border: 1px solid rgba(239,132,80,0.16); }
 .blob-b { width: 320px; height: 320px; border-color: rgba(202,151,43,0.22); bottom: -190px; left: -130px; }
 
+@media (max-width: 780px) {
+  .hero-blob { display: none; }
+}
+
 .slider {
   position: relative;
   max-width: var(--container);
