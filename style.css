@@ -507,7 +507,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   box-shadow: var(--shadow);
 }
-.offer-visual span { font-size: 4.5rem; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.25)); }
+.offer-icon { width: 120px; height: 120px; color: var(--white); filter: drop-shadow(0 8px 12px rgba(0,0,0,0.25)); }
 
 .offer-copy h2 { margin-bottom: 0.4em; }
 .offer-copy p { color: var(--text); max-width: 56ch; }
@@ -517,6 +517,7 @@ a { color: inherit; text-decoration: none; }
   .offer-row.reverse .offer-visual,
   .offer-row.reverse .offer-copy { order: initial; }
   .offer-visual { max-width: 180px; }
+  .offer-icon { width: 76px; height: 76px; }
 }
 
 /* ---------- contact ---------- */
