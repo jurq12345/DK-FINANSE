@@ -313,7 +313,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 640px;
   color: var(--white);
 }
-.slide.is-active { opacity: 1; visibility: visible; transform: translateY(0); position: relative; }
+.slide.is-active { opacity: 1; visibility: visible; transform: translateY(0); }
 .slide-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.1em;
