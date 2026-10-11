@@ -524,7 +524,9 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
 }
 .offer-icon { width: 92px; height: 92px; color: var(--ink); }
+.offer-icon .cut { fill: var(--paper-white); }
 .offer-icon .accent { fill: var(--brick); }
+.offer-icon .accent-stroke { fill: none; stroke: var(--brick); stroke-width: 2.1; stroke-linecap: round; }
 
 .offer-copy h2 { margin-bottom: 0.4em; }
 .offer-copy p { color: var(--text-soft); max-width: 56ch; }
