@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initHeroSlider();
   initCounters();
-  initScrollReveal();
   initScrollTopButton();
   initForms();
   initFaqAccordion();
@@ -136,30 +135,6 @@ function initCounters() {
   }, { threshold: 0.6 });
 
   counters.forEach((c) => observer.observe(c));
-}
-
-/* ---------------- reveal-on-scroll ---------------- */
-function initScrollReveal() {
-  const selectors = [
-    '.trust-item', '.offer-row', '.step', '.testimonial-card',
-    '.visual-card', '.intro-copy', '.contact-form'
-  ];
-  const targets = document.querySelectorAll(selectors.join(','));
-  if (!targets.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-revealed');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-  targets.forEach((el) => {
-    el.setAttribute('data-reveal', '');
-    observer.observe(el);
-  });
 }
 
 /* ---------------- scroll-to-top button ---------------- */
